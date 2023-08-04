@@ -74,8 +74,6 @@ public class UsuarioController {
 			model.addObject("usuario", usuario);
 			return model;
 		}
-	
-		
 		
 		usuarioService.agregarUsuario(usuario);
 		ModelAndView model = new ModelAndView("index");
@@ -109,4 +107,3 @@ public class UsuarioController {
 		return "redirect:/usuarios";
 	}
 }
-

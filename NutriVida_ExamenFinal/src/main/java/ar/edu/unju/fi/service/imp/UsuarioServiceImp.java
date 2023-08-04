@@ -56,4 +56,3 @@ public class UsuarioServiceImp implements UsuarioService {
 		this.usuarioSesion = usuario;
 	}
 }
-
