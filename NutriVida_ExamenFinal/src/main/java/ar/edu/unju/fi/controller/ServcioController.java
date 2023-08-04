@@ -49,6 +49,12 @@ public class ServcioController {
 		}
 	}
 	
+	/**
+	 * Maneja la petición POST para calcular y registrar el Índice de Masa Corporal (IMC) de un usuario.
+	 * @param indiceMasaCorporal Objeto IndiceMasaCorporal que contiene los datos del cálculo IMC.
+	 * @param bindingResult Resultado del proceso de validación.
+	 * @return Objeto ModelAndView con la vista y los atributos correspondientes.
+	 */
 	
 	@PostMapping("/imc")
 	public ModelAndView postIMC(@Validated @ModelAttribute("imc") IndiceMasaCorporal indiceMasaCorporal, BindingResult bindingResult) {

@@ -4,18 +4,27 @@ import java.time.LocalDate;
 import java.time.Period;
 //import java.util.ArrayList;
 //import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
 //import jakarta.persistence.CascadeType;
 //import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 //import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+
+/**
+ * Representa a un usuario en el sistema.
+ */
 
 public class Usuario {
 	@Id
@@ -45,11 +54,11 @@ public class Usuario {
 	@NotNull(message = "El campo estatura no puede estar vacio.")
 	private Double estatura;
 	
-	/*@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<IndiceMasaCorporal> imc = new ArrayList<IndiceMasaCorporal>();
 	
 	@OneToMany(mappedBy = "usuario", orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<Testimonio> testimonios = new ArrayList<Testimonio>();*/
+	private List<Testimonio> testimonios = new ArrayList<Testimonio>();
 	
 	private Boolean admin=false;
 	
@@ -61,10 +70,21 @@ public class Usuario {
 	}
 
 	/**
-	 * Constructor parametrizado
-	 */
+     * Constructor parametrizado.
+     *
+     * @param id          ID del usuario.
+     * @param nombre      Nombre del usuario.
+     * @param apellido    Apellido del usuario.
+     * @param email       Dirección de correo electrónico del usuario.
+     * @param telefono    Número de teléfono del usuario.
+     * @param sexo        Género del usuario.
+     * @param fechaNac    Fecha de nacimiento del usuario.
+     * @param estatura    Estatura del usuario.
+     * @param imc         Lista de índices de masa corporal asociados al usuario.
+     * @param testimonios Lista de testimonios asociados al usuario.
+     */
 	public Usuario(Long id, String nombre, String apellido, String email, String telefono, String sexo,
-			LocalDate fechaNac, Double estatura/*, List<IndiceMasaCorporal> imc, List<Testimonio> testimonios*/) {
+			LocalDate fechaNac, Double estatura, List<IndiceMasaCorporal> imc, List<Testimonio> testimonios) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -74,8 +94,8 @@ public class Usuario {
 		this.sexo = sexo;
 		this.fechaNac = fechaNac;
 		this.estatura = estatura;
-		//this.imc = imc;
-		//this.testimonios = testimonios; 
+		this.imc = imc;
+		this.testimonios = testimonios; 
 	}
 
 	/**
@@ -145,13 +165,13 @@ public class Usuario {
 		this.estatura = estatura;
 	}
 
-	//public List<IndiceMasaCorporal> getImc() {
-	//	return imc;
-	//}
+	public List<IndiceMasaCorporal> getImc() {
+		return imc;
+	}
 
-	//public void setImc(List<IndiceMasaCorporal> imc) {
-	//	this.imc = imc;
-	//}
+	public void setImc(List<IndiceMasaCorporal> imc) {
+		this.imc = imc;
+	}
 
 	public Boolean getAdmin() {
 		return admin;
@@ -161,21 +181,33 @@ public class Usuario {
 		this.admin = admin;
 	}
 	
-	/*public List<Testimonio> getTestimonio() {
+	public List<Testimonio> getTestimonio() {
 		return testimonios;
-	}*/
+	}
 
-	/*public void setTestimonio(List<Testimonio> testimonios) {
+	public void setTestimonio(List<Testimonio> testimonios) {
 		this.testimonios = testimonios;
-	}*/
+	}
 
+	/**
+     * Calcula la edad del usuario en años, con respecto a la fecha actual.
+     *
+     * @return Edad del usuario en años.
+     */
+	
 	public int calcularEdad() {
 		LocalDate fechaActual = LocalDate.now();
 		Period periodo = Period.between(fechaNac, fechaActual);
 		return periodo.getYears();
 	}
 	
-	/*public double calcularPesoIdeal() {
+	/**
+     * Calcula el peso ideal del usuario basado en su estatura y edad.
+     *
+     * @return Peso ideal del usuario.
+     */
+	
+	public double calcularPesoIdeal() {
 		
 		double pesoId = estatura - 100 + ((this.calcularEdad()/10)*0.9);
 		return pesoId;
@@ -187,5 +219,4 @@ public class Usuario {
 				+ ", telefono=" + telefono + ", sexo=" + sexo + ", fechaNac=" + fechaNac + ", estatura=" + estatura
 				+ ", imc=" + imc + ", testimonios=" + testimonios + ", admin=" + admin + "]";
 	}
-}*/
 }

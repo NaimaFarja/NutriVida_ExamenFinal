@@ -16,12 +16,23 @@ import ar.edu.unju.fi.entity.Testimonio;
 import ar.edu.unju.fi.service.TestimonioService;
 import ar.edu.unju.fi.service.UsuarioService;
 
+/**
+ * Controlador que maneja las operaciones relacionadas con los testimonios de usuarios.
+ */
+
 public class TestimonioController {
 
 	@Autowired
 	TestimonioService testimonioService;
 	@Autowired
 	UsuarioService usuarioService;
+	
+	/**
+     * Maneja la petición GET para mostrar la página de gestión de testimonios.
+     * @param model Modelo para compartir datos con la vista.
+     * @return Si el id no es de un admin muestra pagina de inicio.
+     * @return Si el id es de un admin muestra la gestion donde se guardan los testimonios.
+     */
 	
 	@GetMapping("/gestion-testimonio")
 	public String getTestimonio(Model model) {
@@ -36,6 +47,12 @@ public class TestimonioController {
 		}
 	}
 	
+	/**
+     * Maneja la petición GET para mostrar el formulario de nuevo testimonio.
+     * @param model Modelo para compartir datos con la vista.
+     * @return La vista correspondiente segun el resultado de la condicion.
+     */
+	
 	@GetMapping("/nuevo_testimonio")
 	public String getNuevoTestimonio(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
@@ -48,6 +65,12 @@ public class TestimonioController {
 			return "nuevo_testimonio";
 		}
 	}
+	
+	/*
+	 * @param testimonio     Objeto Testimonio a ser guardado.
+     * @param bindingResult  Resultado del proceso de validación.
+     * @return Objeto ModelAndView con la vista y los atributos correspondientes.
+     */
 	
 	@PostMapping("/nuevo_testimonio")
 	public ModelAndView postNuevoTestamento(@Validated @ModelAttribute("testimonio") Testimonio testimonio,BindingResult bindingResult) {
@@ -63,6 +86,12 @@ public class TestimonioController {
 		return model;
 	}
 	
+	/**
+     * Maneja la petición GET para mostrar la página de testimonios donde se veran reflejados los testimonios para todos.
+     * @param model Modelo para compartir datos con la vista.
+     * @return Pagina donde se muestran los testimonios.
+     */
+	
 	@GetMapping("/testimonios")
 	public String getTest(Model model) {
 		model.addAttribute("login", false);
@@ -74,6 +103,13 @@ public class TestimonioController {
 		model.addAttribute("testimonio", testimonioService.obtenerTestimonios());
 		return "testimonio";
 	}
+	
+	/**
+     * Maneja la petición GET para eliminar un testimonio específico.
+     * @param id    Identificador del testimonio a eliminar.
+     * @param model Modelo para compartir datos con la vista.
+     * @return Pagina donde se gestionan los testimonios después de eliminar.
+     */
 	
 	@GetMapping("/eliminarTestimonio/{id}")
 	public String getEliminarTestimonio(@PathVariable(value="id")Long id, Model model) {
