@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+		<head>
+			<meta charset="UTF-8">
+			<title>NutriVida!</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" type="text/css"
+				th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+			<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+		</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+		<div class="container mt-4 text-center">
+			<h4>Usuario</h4>
+			<hr>
+			<div class="table-responsive-sm" th:if="*{usuarios.size!=0}">
+				<table class="table table-bordered table align-middle" style="border-color:#e92e74">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">E-mail</th>
+							<th scope="col">Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="usuario : ${usuarios}">
+							<th scope="row" th:text="*{usuario.id}"></th>
+							<td th:text="*{usuario.nombre}"></td>
+							<td th:text="*{usuario.apellido}"></td>
+							<td th:text="*{usuario.email}"></td>
+							<td>
+								<a class="btn btn-secondary" th:attr="data-bs-toggle='modal', data-bs-target='#userModal' + ${usuario.id}">Ver</a>
+								<a class="btn btn-rose" th:href="@{/editarUsuario/}+*{usuario.id}">Editar</a>
+								<a class="btn btn-inter" th:href="@{/eliminarUsuario/}+*{usuario.id}">Eliminar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- Modal -->
+				<div class="modal fade" th:each="usuario : ${usuarios}" th:id="'userModal' + ${usuario.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				            	<h1 class="modal-title fs-5">Información Detallada</h1>
+				                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				            </div>
+				            <div class="modal-body text-start">
+				                <p>#ID: <span th:text="${usuario.id}"></span></p>
+				                <p>Nombre: <span th:text="${usuario.nombre}"></span></p>
+				                <p>Apellido: <span th:text="${usuario.apellido}"></span></p>
+				                <p>Email: <span th:text="${usuario.email}"></span></p>
+				                <p>Sexo: <span th:text="${usuario.sexo}"></span></p>
+				                <p>Teléfono: <span th:text="${usuario.telefono}"></span></p>
+				                <p>Estatura(cm): <span th:text="${usuario.estatura}"></span></p>
+				                <p>Fecha de Nacimiento: <span th:text="${usuario.fechaNac}"></span></p>
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-inter" data-bs-dismiss="modal">Cerrar</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+			<div th:if="*{usuarios.size==0}">
+				<p class="lead">No hay usuarios registrados en el sistema.</p>
+			</div>
+		</div>
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>
