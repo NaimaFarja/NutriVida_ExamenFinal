@@ -49,6 +49,13 @@ public class InicioController {
 		return "not_found";
 	}
 	
+	/**
+     * Maneja la petición GET para mostrar la página de inicio de sesión.
+     * @param model Modelo para compartir datos con la vista.
+     * @return Formulario de inicio de sesion.
+     * @return Pagina de inicio de sesion
+     */
+	
 	@GetMapping("/iniciarSesion")
 	public String getIniciarSesion(Model model) {
 		model.addAttribute("login", false);
@@ -59,6 +66,12 @@ public class InicioController {
 			return "redirect:/inicio";
 		}
 	}
+	
+	/**
+     * Maneja la petición POST para iniciar sesión.
+     * @param idUser Identificador del usuario a iniciar sesión.
+     * @return Objeto ModelAndView con la vista y los atributos correspondientes.
+     */
 	
 	@PostMapping("/iniciarSesion")
 	public ModelAndView postIniciarSesion(@RequestParam String idUser) {
@@ -81,6 +94,11 @@ public class InicioController {
 	    }
 		return modelview;
 	}
+	
+	/**
+     * Maneja la petición GET para cerrar la sesión del usuario.
+     * @return Pagina de inicio.
+     */
 	
 	@GetMapping("/cerrarSesion")
 	public String getCerrarSesion() {

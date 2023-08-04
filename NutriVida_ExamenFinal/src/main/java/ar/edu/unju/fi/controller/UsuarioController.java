@@ -14,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Usuario;
 import ar.edu.unju.fi.service.UsuarioService;
 
+/**
+ * Controlador para gestionar las operaciones relacionadas con los usuarios.
+ */
 
 @Controller
 public class UsuarioController {
@@ -22,10 +25,11 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	/**
-	 * Peticion GET, permite obtener el formulario para el registro de un usuario.
-	 * @param model
-	 * @return
-	 */
+     * Maneja la petición GET para obtener el formulario de registro de un nuevo usuario.
+     * @param model Modelo utilizado para transmitir datos a la vista.
+     * @return formulario para registrar un nuevo usurio.
+     * @return Pagina de inicio
+     */
 	@GetMapping("/registrarUsuario")
 	public String getRegistrarUsuario(Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
@@ -39,12 +43,13 @@ public class UsuarioController {
 		
 	}
 	
-	/**
-	 * Peticion GET, permite obtener el formulario para editar un usuario en especifico.
-	 * @param usuario
-	 * @param model
-	 * @return
-	 */
+	 /**
+     * Maneja la petición GET para obtener el formulario de edición de un usuario específico.
+     *
+     * @param usuario Usuario que sera modificado.
+     * @param model   Modelo utilizado para transmitir datos a la vista.
+     * @return formulario para modificar los datos.
+     */
 	@GetMapping("/editarUsuario/{id}")
 	public String getEditarUsuario(Usuario usuario, Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
@@ -60,13 +65,12 @@ public class UsuarioController {
 		
 	}
 	
-	/**
-	 * Peticion POST, permite verificar que los datos del usuario esten siendo ingresados correctamente.
-	 * Luego registra al usuario en la BD.
-	 * @param usuario
-	 * @param bindingResult
-	 * @return
-	 */
+	  /**
+     * Maneja la petición POST para registrar un nuevo usuario.
+     * @param usuario        Objeto Usuario obtenido del formulario.
+     * @param bindingResult  Resultado de la validación del formulario.
+     * @return Modelo y vista que se mostrará después del procesamiento.
+     */
 	@PostMapping("/registrarUsuario")
 	public ModelAndView postRegistrarUsuario(@Validated @ModelAttribute("usuario") Usuario usuario, BindingResult bindingResult){
 		if(bindingResult.hasErrors()) {
@@ -83,11 +87,13 @@ public class UsuarioController {
 	}
 	
 	
-	/**
-	 * Peticion GET, permite obtener la pagina con todos los usuarios registrados.
-	 * @param model
-	 * @return
-	 */
+	 /**
+     * Maneja la petición GET para obtener la página con la lista de todos los usuarios registrados.
+     *
+     * @param model Modelo utilizado para transmitir datos a la vista.
+     * @return Si el id ingresado no es admi muestra la pagina de inicio.
+     * @return Si el id es admi muestra la pagina donde se encuntra todos los registros de usuarios.
+     */
 	@GetMapping("/usuarios")
 	public String getUsuario(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
@@ -100,7 +106,12 @@ public class UsuarioController {
 			return "usuarios";
 		}
 	}
-	
+	/**
+     * Maneja la petición GET para eliminar un usuario por su ID.
+     * @param id    ID del usuario a eliminar.
+     * @param model Modelo utilizado para transmitir datos a la vista.
+     * @return Redirecciona a la lista de usuarios después de la eliminación.
+     */
 	@GetMapping("/eliminarUsuario/{id}")
 	public String getEliminarUsuario(@PathVariable(value="id")Long id, Model model) {
 		usuarioService.eliminarUsuario(id);
