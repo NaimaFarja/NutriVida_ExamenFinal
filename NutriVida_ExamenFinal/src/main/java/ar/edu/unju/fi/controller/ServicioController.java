@@ -91,7 +91,7 @@ public class ServicioController {
 			model.addAttribute("login", true);
 			model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
 			model.addAttribute("edad", usuarioService.obtenerSesionUsuario().calcularEdad());
-		//	model.addAttribute("pesoIdeal",  usuarioService.obtenerSesionUsuario().calcularPesoIdeal());
+			model.addAttribute("pesoIdeal",  usuarioService.obtenerSesionUsuario().calcularPesoIdeal());
 			return "peso_ideal";
 		}
 		
