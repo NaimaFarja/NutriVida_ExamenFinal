@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+				<div class="container mt-5 py-5 text-center">
+					<h1 class="fw-light">NUTRIVIDA</h1>
+					<p class="lead text-body-secondary">¡Bienvenido a Nutrivida, tu destino definitivo para descubrir las mejores recetas y consejos para una salud óptima!</p>
+					<p class="fw-lighter">Contactanos en nuetras diferentes redes donde podras encontras videos, recetas, algunos planes nutritivos y mucho mas. Tambien puedes contactarnos atraves de WhatsApp y Gmail para planes mas completos </p>
+					
+				</div>
+				
+				<div class="container">
+						<div class="row row-cols-1 row-cols-md-2 g-4">
+							  <div class="col">
+							    <div class="card">
+							      <img class="img-fluid rouded" th:src="@{../images/PUPILife.png} " style="width: 52px;height:52px;">
+							      <div class="card-body">
+							        <h5 class="card-title">Nutrición que saluda a tu bienestar</h5>
+							        <p class="card-text">Saluda a una alimentación balanceada y descubre tu mejor versión.</p>
+							        <a class="btn btn-rose" href="https://es-la.facebook.com/" >Facebook</a>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							     <img class="img-fluid rouded" th:src="@{../images/PUPILife.png}" style="width: 52px;height:52px;">
+							      <div class="card-body">
+							        <h5 class="card-title">Cambiando vidas</h5>
+							        <p class="card-text">A través de recetas saludables</p>
+							        <a class="btn btn-rose" href="https://www.instagram.com/" >Instagram</a>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <img class="img-fluid rouded" th:src="@{../images/PUPILife.png}" style="width: 52px;height:52px;">
+							      <div class="card-body">
+							        <h5 class="card-title">Tu guía de alimentación</h5>
+							        <p class="card-text">Recetas, planes y asesoramiento.</p>
+							        <a class="btn btn-rose" href="https://web.whatsapp.com/">WhatsApp</a>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <img class="img-fluid rouded" th:src="@{../images/PUPILife.png}" style="width: 52px;height:52px;">
+							      <div class="card-body">
+							        <h5 class="card-title">Sabores que nutren </h5>
+							        <p class="card-text">Planes que cuidan, asesoramiento que transforma</p>
+							        <a class="btn btn-rose" href="mailto:nutrivida@gmail.com?subject=Hola, me interesaria conocer mas de sus planes" >Gmail</a>
+							      </div>
+							    </div>
+							  </div>
+						</div>
+						
+					</div>
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>
