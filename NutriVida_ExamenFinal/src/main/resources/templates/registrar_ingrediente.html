@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+<head>
+	<meta charset="UTF-8">
+	<title>PUPILife</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<!-- Cabecera -->
+	<header th:replace="~{/layouts/header :: header}"></header>
+	<!-- Contenedor principal -->
+	<div class="mt-4 container">
+		<h4 class="text-center">Ingrediente</h4>
+		<hr>
+		<div class="container p-3 border rounded-4" style="max-width: 350px;">
+			<!-- Formulario-->
+			<form th:action="@{/registrarIngrediente}" method="POST" th:object="${ingrediente}">
+				<input type="hidden" th:field="*{id}">
+				<div class="row g-3">
+					<div class="col">
+						<label for="nombre" class="form-label">Nombre</label> 
+						<input th:field="*{nombre}" type="text" class="form-control" id="nombre"
+							placeholder="EJ: Tomate">
+						<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-rose mt-3" style="width: 100px">Enviar</button>
+				<a class="btn btn-inter mt-3" th:href="@{/ingredientes}" style="width: 100px">Volver</a>
+			</form>
+		</div>
+	</div>
+	<!-- Pie de página -->	
+	<footer th:replace="~{/layouts/footer :: footer}"></footer>
+</body>
+</html>
