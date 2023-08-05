@@ -53,4 +53,6 @@ public interface RecetaService {
      * @return Una lista que contiene todos los objetos Receta en la base de datos.
      */
 	public List<Receta> obtenerRecetas();
+	
+	//EDITANDO
 }

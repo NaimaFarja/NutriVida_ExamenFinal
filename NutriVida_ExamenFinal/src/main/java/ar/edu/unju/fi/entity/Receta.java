@@ -189,4 +189,5 @@ public class Receta {
 				+ ", preparacion=" + preparacion + ", imagen=" + imagen + "]";
 	}
 	
+	//EDITANDO
 }

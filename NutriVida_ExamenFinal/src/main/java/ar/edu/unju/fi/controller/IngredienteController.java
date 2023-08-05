@@ -123,4 +123,5 @@ public class IngredienteController {
 		ingredienteService.eliminarIngrediente(id);
 		return "redirect:/ingredientes";
 	}
+	
 }

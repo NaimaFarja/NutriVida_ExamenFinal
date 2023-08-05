@@ -41,5 +41,7 @@ public interface IngredienteService {
      * @return Una lista que contiene todos los objetos Ingrediente en la base de datos.
      */
 	public List<Ingrediente> obtenerIngredientes();
+	
+	//EDITANDO
 }
 

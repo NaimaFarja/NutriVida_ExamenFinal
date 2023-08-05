@@ -67,4 +67,6 @@ public class IngredienteServiceImp implements IngredienteService {
 	public List<Ingrediente> obtenerIngredientes(){
 		return (List<Ingrediente>) ingredienteRepository.findAll();
 	}
+	
+	//EDITANDO
 }
