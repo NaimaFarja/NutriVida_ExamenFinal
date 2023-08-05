@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,6 +16,7 @@ import ar.edu.unju.fi.service.UsuarioService;
 @Controller
 public class InicioController {
 	
+	
 	@Autowired
 	UsuarioService usuarioService;
 	
@@ -23,6 +25,7 @@ public class InicioController {
 	 * @param model
 	 * @return
 	 */
+	
 	@GetMapping({"/inicio","/"})
 	public String getInicio(Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
@@ -38,6 +41,7 @@ public class InicioController {
 	 * Peticion GET, devuelve la pagina "not_found" en caso de que la URL no 'exista'.
 	 * @return
 	 */
+	
 	@GetMapping("/*")
 	public String getNotFound(Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
@@ -105,5 +109,6 @@ public class InicioController {
 		this.usuarioService.iniciarSesion(new Usuario());
 		return "redirect:/inicio";
 	}
+	
 }
 

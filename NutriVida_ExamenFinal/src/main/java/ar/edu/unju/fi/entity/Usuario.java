@@ -2,22 +2,22 @@ package ar.edu.unju.fi.entity;
 
 import java.time.LocalDate;
 import java.time.Period;
-//import java.util.ArrayList;
-//import java.util.List;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-//import jakarta.persistence.CascadeType;
-//import jakarta.persistence.FetchType;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-//import jakarta.persistence.OneToMany;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +25,8 @@ import jakarta.validation.constraints.NotNull;
 /**
  * Representa a un usuario en el sistema.
  */
-
+@Component
+@Entity
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

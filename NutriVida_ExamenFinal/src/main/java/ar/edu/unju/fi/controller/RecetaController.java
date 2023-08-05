@@ -25,7 +25,7 @@ import ar.edu.unju.fi.entity.Receta;
 import ar.edu.unju.fi.service.IngredienteService;
 import ar.edu.unju.fi.service.RecetaService;
 import ar.edu.unju.fi.service.UsuarioService;
-//import ar.edu.unju.fi.util.UploadFile;
+import ar.edu.unju.fi.util.UploadFile;
 
 @Controller
 public class RecetaController {
@@ -38,7 +38,7 @@ public class RecetaController {
 	@Autowired
 	private IngredienteService ingredienteService;
 	
-	@Autowired
+	//*@Autowired
 	//private UploadFile uploadFile;
 	
 	
@@ -49,6 +49,7 @@ public class RecetaController {
 	 * @param model El modelo para enviar datos a la vista.
 	 * @return El nombre de la vista "receta".
 	 */
+	
 	@GetMapping("/receta")
 	public String getObtenerRecetas(Model model) {
 		model.addAttribute("login", false);
@@ -68,6 +69,7 @@ public class RecetaController {
 	 * @param model El modelo para enviar datos a la vista.
 	 * @return El nombre de la vista "receta_nueva" si el usuario es administrador, de lo contrario, redirige a la página de inicio.
 	 */
+
 	@GetMapping("/receta_nueva")
 	public String recetaNueva(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
@@ -92,6 +94,7 @@ public class RecetaController {
 	 * @return Una vista ModelAndView con la página de registro de recetas si hay errores de validación, o redirige a la página de recetas.
 	 * @throws IOException Si ocurre un error al manejar la imagen.
 	 */
+	
 	@PostMapping("/receta_nueva")
 	public ModelAndView postRecetaNueva(@Validated @ModelAttribute("receta") Receta receta, BindingResult bindingResult, @RequestParam("file") MultipartFile image) throws IOException {
 		if(bindingResult.hasErrors() || (image.isEmpty() && receta.getId()==null)) {
@@ -128,6 +131,7 @@ public class RecetaController {
 	 * @param model El modelo para enviar datos a la vista.
 	 * @return El nombre de la vista "gestion_receta" si el usuario es administrador, de lo contrario, redirige a la página de inicio.
 	 */
+	
 	@GetMapping("/gestion-receta")
 	public String getReceta(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
@@ -149,6 +153,7 @@ public class RecetaController {
 	 * @param model El modelo para enviar datos a la vista.
 	 * @return Redirige a la página de gestión de recetas después de eliminar la receta.
 	 */
+	
 	@GetMapping("/eliminarReceta/{id}")
 	public String getEliminarReceta(@PathVariable(value="id")Long id, Model model) {
 		recetaService.eliminarReceta(id);
@@ -166,6 +171,7 @@ public class RecetaController {
 	 * @param model  El modelo para enviar datos a la vista.
 	 * @return El nombre de la vista "receta_nueva" con los datos de la receta a editar si el usuario es administrador, de lo contrario, redirige a la página de inicio.
 	 */
+	
 	@GetMapping("/editarReceta/{id}")
 	public String getEditarUsuario(Receta receta, Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
