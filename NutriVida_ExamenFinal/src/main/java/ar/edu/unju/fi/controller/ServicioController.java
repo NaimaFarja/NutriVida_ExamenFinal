@@ -18,7 +18,7 @@ import ar.edu.unju.fi.entity.IndiceMasaCorporal;
 import ar.edu.unju.fi.service.ImcService;
 import ar.edu.unju.fi.service.UsuarioService;
 @Controller
-public class ServcioController {
+public class ServicioController {
 	
 	@Autowired
 	UsuarioService usuarioService;
@@ -34,7 +34,7 @@ public class ServcioController {
 	 * @return El nombre de la vista "imc".
 	 * @GetMapping Indica que este método maneja solicitudes HTTP GET en la ruta especificada.
 	 */
-	
+
 	@GetMapping("/imc")
 	public String getIMC(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {

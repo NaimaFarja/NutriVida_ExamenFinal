@@ -30,6 +30,7 @@ public class UsuarioController {
      * @return formulario para registrar un nuevo usurio.
      * @return Pagina de inicio
      */
+	
 	@GetMapping("/registrarUsuario")
 	public String getRegistrarUsuario(Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
@@ -50,6 +51,7 @@ public class UsuarioController {
      * @param model   Modelo utilizado para transmitir datos a la vista.
      * @return formulario para modificar los datos.
      */
+	
 	@GetMapping("/editarUsuario/{id}")
 	public String getEditarUsuario(Usuario usuario, Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
@@ -71,6 +73,7 @@ public class UsuarioController {
      * @param bindingResult  Resultado de la validación del formulario.
      * @return Modelo y vista que se mostrará después del procesamiento.
      */
+	
 	@PostMapping("/registrarUsuario")
 	public ModelAndView postRegistrarUsuario(@Validated @ModelAttribute("usuario") Usuario usuario, BindingResult bindingResult){
 		if(bindingResult.hasErrors()) {
@@ -78,7 +81,7 @@ public class UsuarioController {
 			model.addObject("usuario", usuario);
 			return model;
 		}
-		
+		//usuario.setAdmin(true);
 		usuarioService.agregarUsuario(usuario);
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("login", false);
@@ -94,6 +97,7 @@ public class UsuarioController {
      * @return Si el id ingresado no es admi muestra la pagina de inicio.
      * @return Si el id es admi muestra la pagina donde se encuntra todos los registros de usuarios.
      */
+	
 	@GetMapping("/usuarios")
 	public String getUsuario(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
@@ -112,9 +116,11 @@ public class UsuarioController {
      * @param model Modelo utilizado para transmitir datos a la vista.
      * @return Redirecciona a la lista de usuarios después de la eliminación.
      */
+	
 	@GetMapping("/eliminarUsuario/{id}")
 	public String getEliminarUsuario(@PathVariable(value="id")Long id, Model model) {
 		usuarioService.eliminarUsuario(id);
 		return "redirect:/usuarios";
 	}
+	
 }

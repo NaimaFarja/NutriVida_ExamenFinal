@@ -123,6 +123,7 @@ public class TestimonioController {
 	 * @param model
 	 * @return
 	 */
+	
 	@GetMapping("/editarTestimonio/{id}")
 	public String getEditarUsuario(Testimonio testimonio, Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {

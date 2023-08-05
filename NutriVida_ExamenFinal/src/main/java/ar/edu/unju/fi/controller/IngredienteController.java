@@ -32,6 +32,7 @@ public class IngredienteController {
 	 * @param model El modelo para enviar datos a la vista.
 	 * @return La vista "ingredientes" si el usuario es administrador, de lo contrario, redirige a la página de inicio.
 	 */
+	
 	@GetMapping("/ingredientes")
 	public String getIngredientes(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
@@ -54,6 +55,7 @@ public class IngredienteController {
 	 * @param model El modelo para enviar datos a la vista.
 	 * @return La vista "registrar_ingrediente" si el usuario es administrador, de lo contrario, redirige a la página de inicio.
 	 */
+	
 	@GetMapping("/registrarIngrediente")
 	public String getRegistrarIngrediente(Model model) {
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
@@ -74,6 +76,7 @@ public class IngredienteController {
 	 * @param bindingResult   El resultado del proceso de validación.
 	 * @return Una vista ModelAndView con la página de registro de ingredientes si hay errores de validación, o redirige a la página de ingredientes.
 	 */
+	
 	@PostMapping("/registrarIngrediente")
 	public ModelAndView postRegistrarIngrediente(@Validated @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
@@ -96,6 +99,7 @@ public class IngredienteController {
 	 * @param model       El modelo para enviar datos a la vista.
 	 * @return La vista "registrar_ingrediente" con los datos del ingrediente a editar si el usuario es administrador, de lo contrario, redirige a la página de inicio.
 	 */
+	
 	@GetMapping("/editarIngrediente/{id}")
 	public String getEditarIngrediente(Ingrediente ingrediente, Model model){
 		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
@@ -118,10 +122,12 @@ public class IngredienteController {
 	 * @param model El modelo para enviar datos a la vista.
 	 * @return Redirige a la página de ingredientes después de eliminar el ingrediente.
 	 */
+	
 	@GetMapping("/eliminarIngrediente/{id}")
 	public String getEliminarUsuario(@PathVariable(value="id")Long id, Model model) {
 		ingredienteService.eliminarIngrediente(id);
 		return "redirect:/ingredientes";
 	}
+	
 	//EDITANDO
 }
