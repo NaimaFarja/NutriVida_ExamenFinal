@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+		<title>NutriVida</title>
+	</head>
+	<body>
+	
+		<!-- Cabecera -->
+		<header th:replace="~{/layouts/header :: header}"></header>
+		
+		<!-- Contenedor principal -->
+		<div class="container mt-4 text-center">
+			<h4>Recetas</h4>
+			<hr>
+			<!-- Enlace para crear una nueva receta (visible solo para el administrador) -->
+			<a th:href= "@{/receta_nueva}" th:if="${admin==true}">Nueva Receta</a>
+			<!-- Filas de tarjetas que muestran las recetas -->
+			<div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
+				<div class="col"  th:each="receta : ${receta}" >
+				    <div class="card h-100"  style=" border: 1px solid #F7B5CD">
+				    	<!-- Encabezado de la tarjeta que muestra el nombre de la receta -->
+				    	<div class="card-header"  th:text="*{receta.nombre}"></div>
+				    	<!-- Imagen de la receta (si está disponible) -->
+				    	<img th:src="@{/recetas/uploads/}+*{receta.imagen}" class="card-img-top" th:if="*{receta.imagen!=null}">
+				      	<!-- Cuerpo de la tarjeta que muestra la descripción o preparación de la receta -->
+				      	<div class="card-body">
+					        <p class="card-text" th:text="*{receta.preparacion}"></p>
+					      </div>
+				    </div>
+			  	</div>
+			</div>
+		</div>
+		<!-- Pie de página -->	
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+	<!-- EDITANDO -->
+</html>

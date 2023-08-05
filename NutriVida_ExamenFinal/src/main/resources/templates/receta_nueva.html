@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<!-- Cabecera -->
+		<header th:replace="~{/layouts/header :: header}"></header>
+		
+		<!-- Contenedor principal -->
+		<div class="container mt-4">
+		
+		<!-- Título de la sección -->
+		<h4 class="text-center">Agregar receta</h4>
+		<hr>
+		<!-- Formulario para agregar una nueva receta -->
+		<form th:action="@{/receta_nueva}" method="post" th:object="${receta}" enctype="multipart/form-data">
+			<!-- Campo oculto para el ID de la receta (se utiliza si se está editando una receta existente) -->
+			<input type="hidden" th:field="*{id}">
+			
+			<!-- Fila de campos para Nombre, Categoría y Preparación -->
+			<div class="row g-3">
+				<div class="col-sm-4">
+					<label for="nombre" class="form-label">Nombre</label> 
+					<input th:field="*{nombre}" type="text" class="form-control" id="nombre"
+						placeholder="EJ: Maximiliano">
+					<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+				</div>
+				<div class="col-sm-4">
+					<label for="nombre" class="form-label">Categoria</label> 
+					<select class="form-select" th:field="*{categoria}">
+					  <option value="Recetas de carnes">Recetas de carnes</option>
+					  <option value="Recetas de pescado">Recetas de pescado</option>
+					  <option value="Recetas de ensalada">Recetas de ensaladas</option>
+					  <option value="Recetas de legumbres y cereales">Recetas de legumbres y cereales</option>
+					  <option value="Recetas de sopas y cremas">Recetas de sopas y cremas</option>
+					  <option value="Recetas de bebidas">Recetas de bebidas</option>
+					  <option value="Recetas de dulces">Recetas de dulces</option>
+					  <option value="Recetas de Pan">Recetas de Pan</option>
+					</select>
+					<div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+				</div>
+				<div class="col-sm-4">
+					<label for="preparacion" class="form-label">Preparacion</label> 
+					<input th:field="*{preparacion}" 
+						type="text" class="form-control" id="preparacion"
+						placeholder="Describa la preparacion">
+					<div class="text-danger" th:if="${#fields.hasErrors('preparacion')}" th:errors="*{preparacion}"></div>
+				</div>
+				<!-- Campo para cargar una imagen -->
+				<div class="col-sm-4">
+					<label class="form-label">Imagen</label><br>
+					<input type="file" accept="image/*" name="file" id="file" class="form-control">
+					<div class="text-danger" th:if="${vacio==true}">Debe cargar una imagen.</div> 
+				</div>
+				<!-- Campo para seleccionar ingredientes (checkboxes) -->
+				<div class="col-sm-6">
+					<label for="preparacion" class="form-label">Ingredientes</label><br>
+				    <div class="form-check form-check-inline" th:each="ingrediente : ${ingredientes}">
+						<input class="form-check-input" type="checkbox" th:field="*{ingredientes}" th:value="${ingrediente.id}" multiple>
+					  	<label class="form-check-label" th:text="${ingrediente.nombre}"></label>
+					</div>
+					<div class="text-danger" th:if="${#fields.hasErrors('ingredientes')}" th:errors="*{ingredientes}"></div>
+				</div>
+			</div>
+			<!-- Mostrar imagen de la receta (si ya tiene una cargada) -->
+			<div class="card mt-2 mx-auto" style="width: 18rem;" th:if="*{imagen!=null}">
+				<img th:src="@{/recetas/uploads/}+*{imagen}" class="card-img-top">
+			</div>
+			<!-- Botón para enviar el formulario -->
+			<button type="submit" class="btn btn-rose mt-3" style="width: 100px">Enviar</button>
+		</form>
+	</div>
+	<!-- Pie de página -->
+	<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+	<!-- EDITANDO -->
+</html>
