@@ -54,5 +54,5 @@ public interface RecetaService {
      */
 	public List<Receta> obtenerRecetas();
 	
-	//EDITANDO
+	//EDITANDOO
 }

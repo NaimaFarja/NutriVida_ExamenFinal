@@ -9,5 +9,5 @@ import ar.edu.unju.fi.entity.Ingrediente;
  * y otros métodos útiles proporcionados por Spring Data JPA para trabajar con la entidad Ingrediente.
  */
 public interface IngredienteRepository extends CrudRepository<Ingrediente, Long> {
-//EDITANDO
+//EDITANDOO
 }

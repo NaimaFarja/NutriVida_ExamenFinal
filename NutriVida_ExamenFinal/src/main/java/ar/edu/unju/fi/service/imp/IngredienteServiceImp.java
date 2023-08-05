@@ -68,5 +68,5 @@ public class IngredienteServiceImp implements IngredienteService {
 		return (List<Ingrediente>) ingredienteRepository.findAll();
 	}
 	
-	//EDITANDO
+	//EDITANDOO
 }

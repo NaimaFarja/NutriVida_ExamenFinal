@@ -10,5 +10,5 @@ import ar.edu.unju.fi.entity.Receta;
  * y otros métodos útiles proporcionados por Spring Data JPA para trabajar con la entidad Receta.
  */
 public interface RecetaRepository extends CrudRepository<Receta, Long> {
-//EDITANDO
+//EDITANDOO
 }

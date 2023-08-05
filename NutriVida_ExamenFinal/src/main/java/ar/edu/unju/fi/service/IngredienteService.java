@@ -42,6 +42,6 @@ public interface IngredienteService {
      */
 	public List<Ingrediente> obtenerIngredientes();
 	
-	//EDITANDO
+	//EDITANDOO
 }
 

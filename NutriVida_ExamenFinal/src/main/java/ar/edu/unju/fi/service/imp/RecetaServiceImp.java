@@ -82,5 +82,5 @@ public class RecetaServiceImp implements RecetaService {
 		return (List<Receta>) recetaRepository.findAll();
 	}
 
-	//EDITANDO
+	//EDITANDOO
 }
