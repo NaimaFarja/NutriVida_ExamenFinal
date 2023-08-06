@@ -12,6 +12,10 @@
 	<!-- Cabecera -->
 	<header th:replace="~{/layouts/header :: header}"></header>
 	<!-- Contenedor principal -->
+	<div class="alert alert-danger alert-dismissible fade show mt-1 mx-auto" role="alert" style="max-width: 600px;" th:if="${existe}">
+	  <span th:text="${existe}"></span>
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
 	<div class="mt-4 container">
 		<h4 class="text-center">Ingrediente</h4>
 		<hr>
