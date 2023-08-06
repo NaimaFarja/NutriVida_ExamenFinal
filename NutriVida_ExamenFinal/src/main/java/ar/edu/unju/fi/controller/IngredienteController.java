@@ -79,9 +79,13 @@ public class IngredienteController {
 	
 	@PostMapping("/registrarIngrediente")
 	public ModelAndView postRegistrarIngrediente(@Validated @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || ingredienteService.verificarIngrediente(ingrediente.getNombre())) {
 			ModelAndView model = new ModelAndView("registrar_ingrediente");
 			model.addObject("ingrediente", ingrediente);
+			if( ingredienteService.verificarIngrediente(ingrediente.getNombre())) {
+				model.addObject("existe", "El ingrediente ya se encuentra registridado");
+			}
+			
 			return model;
 		}
 		ingredienteService.agregarIngrediente(ingrediente);
