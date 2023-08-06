@@ -10,4 +10,5 @@ public interface IngredienteService {
 	public void eliminarIngrediente(Long id);
 	public Ingrediente buscarIngredienteById(Long id);
 	public List<Ingrediente> obtenerIngredientes();
+	public boolean verificarIngrediente(String nombre);
 }

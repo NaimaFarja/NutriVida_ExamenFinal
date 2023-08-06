@@ -24,7 +24,7 @@
 				    	<!-- Encabezado de la tarjeta que muestra el nombre de la receta -->
 				    	<div class="card-header"  th:text="*{receta.nombre}"></div>
 				    	<!-- Imagen de la receta (si está disponible) -->
-				    	<img th:src="@{/recetas/uploads/}+*{receta.imagen}" class="card-img-top" th:if="*{receta.imagen!=null}">
+				    	<img th:src="@{/uploads/}+*{receta.imagen}" class="card-img-top" th:if="*{receta.imagen!=null}">
 				      	<!-- Cuerpo de la tarjeta que muestra la descripción o preparación de la receta -->
 				      	<div class="card-body">
 					        <p class="card-text" th:text="*{receta.preparacion}"></p>

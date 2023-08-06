@@ -56,8 +56,7 @@ public class UploadFile {
      * @throws IOException Si ocurre un error durante la operación de copia.
      */
 	public String copy(MultipartFile file) throws IOException {
-        String uniqueFilename = UUID.randomUUID().toString() + "_" +
-                file.getOriginalFilename();
+        String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
         Path rootPath = getPath(uniqueFilename);
         Files.copy(file.getInputStream(), rootPath);
         return uniqueFilename;
