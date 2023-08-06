@@ -139,6 +139,5 @@ public class TestimonioController {
 			return "nuevo_testimonio";
 		}
 		
-	}
-	
+	}	
 }
