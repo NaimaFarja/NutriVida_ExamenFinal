@@ -13,21 +13,22 @@
 		<div class="container mt-4 text-center">
 			<h4>Testimonios</h4>
 			<hr>
-			<a th:href="@{nuevo_testimonio}" th:if="${login==true}">Dejar testimonio</a>
-			<div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
-				<div class="col" th:each="test : ${testimonio}">
-				    <div class="card h-100"  style=" border: 1px solid #F7B5CD">
-				    	<div class="card-header" th:text="*{test.usuario.nombre}"></div>
-				      	<div class="card-body">
-					        <p class="card-text" th:text="*{test.comentario}"></p>
-					        <div th:if="${idUsuario == test.usuario.id}">
-					     	   	<a class="btn btn-rose" th:href="@{/editarTestimonio/}+*{test.id}">Editar</a>
-								<a class="btn btn-inter" th:href="@{/eliminarTestimonio/}+*{test.id}">Eliminar</a>
-					        </div>
-					      </div>
-				    </div>
-			  	</div>
-			</div>
+				<a th:href="@{nuevo_testimonio}" th:if="${login==true}">Dejar testimonio</a>
+				<div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
+					<div class="col" th:each="test : ${testimonio}">
+					    <div class="card h-100"  style=" border: 1px solid #F7B5CD">
+					     <img class="img-fluid rouded" th:src="@{/images/usuario1.png}" style="width: 65px;height:65px; align-items: center;">
+					    	<div class="card-header" th:text="*{test.usuario.nombre}"></div>
+					      	<div class="card-body">
+						        <p class="card-text" th:text="*{test.comentario}"></p>
+						        <div th:if="${idUsuario == test.usuario.id}">
+						     	   	<a class="btn btn-rose" th:href="@{/editarTestimonio/}+*{test.id}">Editar</a>
+									<a class="btn btn-inter" th:href="@{/eliminarTestimonio/}+*{test.id}">Eliminar</a>
+						        </div>
+						      </div>
+					    </div>
+				  	</div>
+				</div>
 		</div>
 		<footer th:replace="~{/layouts/footer :: footer}"></footer>
 	</body>
