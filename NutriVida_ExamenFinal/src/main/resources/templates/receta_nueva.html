@@ -47,9 +47,9 @@
 				</div>
 				<div class="col-sm-4">
 					<label for="preparacion" class="form-label">Preparacion</label> 
-					<input th:field="*{preparacion}" 
-						type="text" class="form-control" id="preparacion"
-						placeholder="Describa la preparacion">
+					<textarea th:field="*{preparacion}" 
+						 class="form-control" id="preparacion"
+						placeholder="Describa la preparacion" rows="8" cols="50" maxlength="1000"></textarea>
 					<div class="text-danger" th:if="${#fields.hasErrors('preparacion')}" th:errors="*{preparacion}"></div>
 				</div>
 				<!-- Campo para cargar una imagen -->

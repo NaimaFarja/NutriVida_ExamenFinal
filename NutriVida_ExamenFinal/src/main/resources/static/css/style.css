@@ -60,6 +60,29 @@
 	color:#e92e74;
 }
 
+.modal-content {
+    overflow:hidden;   
+}
+
 .modal-body span{
 	color:#fff;
+}
+
+.modal-preparacion {
+	max-height: none;
+	overflow-y: visible;
+}
+.card-img-top{
+	max-width: 100%;
+	display: block;
+	margin: 0 auto; 
+	box-sizing: border-box;
+	border-radius: 500px; 
+	overflow: hidden;
+	object-fit: cover;
+}
+
+.card-title{ 
+	color:white;
+	font-size: 30px;
 }
