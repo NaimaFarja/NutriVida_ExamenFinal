@@ -26,20 +26,20 @@
 				<!-- Botón para crear una nueva receta -->
 				<a class="btn btn-inter" th:href="@{/receta_nueva}">Crear</a>
 			</div>
-			<table class="table table-bordered table align-middle" style="border-color:#e92e74">
+			<table class="table table-bordered table align-middle"  style="border-color:#e92e74;">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Nombre</th>
 						<th scope="col">Categoria</th>
-						<th scope="col">Preparacion</th>
+						<th scope="col" >Preparacion</th>
 						<th scope="col">Opciones</th>
 					</tr>
 				</thead>
 				
 				<tbody>
 					<!-- Iteración sobre la lista de recetas para mostrar cada una -->
-					<tr th:each="receta : ${recetas}">
+					<tr  th:each="receta : ${recetas}">
 						<th scope="row" th:text="*{receta.id}"></th>
 						<td th:text="*{receta.nombre}"></td>
 						<td th:text="*{receta.categoria}"></td>
@@ -53,6 +53,8 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
+			
 			<!-- Modal para mostrar información detallada de la receta -->
 			<div class="modal fade" th:each="receta : ${recetas}" th:id="'userModal' + ${receta.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
@@ -81,7 +83,6 @@
 			            </div>
 			        </div>
 			    </div>
-			</div>
 		</div>
 		<!-- Mensaje si no hay recetas disponibles -->
 		<div th:if="*{recetas.size==0}">
