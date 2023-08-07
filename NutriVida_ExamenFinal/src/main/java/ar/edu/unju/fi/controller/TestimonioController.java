@@ -84,7 +84,7 @@ public class TestimonioController {
 		testimonio.setFecha(LocalDate.now());
 		testimonio.setUsuario(usuarioService.obtenerSesionUsuario());
 		testimonioService.agregarTestimonio(testimonio);
-		ModelAndView model = new ModelAndView("redirect:/gestion-testimonio");
+		ModelAndView model = new ModelAndView("redirect:/testimonios");
 		return model;
 	}
 	
@@ -116,7 +116,7 @@ public class TestimonioController {
 	@GetMapping("/eliminarTestimonio/{id}")
 	public String getEliminarTestimonio(@PathVariable(value="id")Long id, Model model) {
 		testimonioService.eliminarTestimonio(id);
-		return "redirect:/gestion-testimonio";
+		return "redirect:/testimonios";
 	}
 	
 	/**

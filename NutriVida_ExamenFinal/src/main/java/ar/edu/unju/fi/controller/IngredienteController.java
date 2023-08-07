@@ -62,6 +62,7 @@ public class IngredienteController {
 			model.addAttribute("login", false);
 			return "redirect:/inicio";
 		}else {
+			model.addAttribute("login", true);
 			model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
 			model.addAttribute("ingrediente", new Ingrediente());
 			return "registrar_ingrediente";
@@ -129,7 +130,15 @@ public class IngredienteController {
 	
 	@GetMapping("/eliminarIngrediente/{id}")
 	public String getEliminarUsuario(@PathVariable(value="id")Long id, Model model) {
-		ingredienteService.eliminarIngrediente(id);
+		try {
+			ingredienteService.eliminarIngrediente(id);
+		}catch(Exception e) {
+			model.addAttribute("login", true);
+			model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
+			model.addAttribute("ingredientes", ingredienteService.obtenerIngredientes());
+			model.addAttribute("eliminacionError", "El ingrediente está siendo utilizado en algunas recetas, no se puede eliminar.");
+			return "ingredientes";
+		}
 		return "redirect:/ingredientes";
 	}
 	

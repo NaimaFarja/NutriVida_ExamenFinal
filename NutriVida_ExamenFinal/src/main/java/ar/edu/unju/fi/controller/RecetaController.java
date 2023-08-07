@@ -76,6 +76,7 @@ public class RecetaController {
 			model.addAttribute("login", false);
 			return "redirect:/inicio";
 		}else {
+			model.addAttribute("login", true);
 			model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
 			List<Ingrediente> ingredientes = ingredienteService.obtenerIngredientes();
 			model.addAttribute("ingredientes", ingredientes);
@@ -179,6 +180,7 @@ public class RecetaController {
 			return "redirect:/inicio";
 		}else {
 			model.addAttribute("login", true);
+			model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
 			receta = recetaService.buscarRecetaById(receta.getId());
 			List<Ingrediente> ingredientes = ingredienteService.obtenerIngredientes();
 			model.addAttribute("ingredientes", ingredientes);
