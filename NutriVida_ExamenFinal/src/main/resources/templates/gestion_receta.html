@@ -32,7 +32,6 @@
 						<th scope="col">#</th>
 						<th scope="col">Nombre</th>
 						<th scope="col">Categoria</th>
-						<th scope="col" >Preparacion</th>
 						<th scope="col">Opciones</th>
 					</tr>
 				</thead>
@@ -43,7 +42,7 @@
 						<th scope="row" th:text="*{receta.id}"></th>
 						<td th:text="*{receta.nombre}"></td>
 						<td th:text="*{receta.categoria}"></td>
-						<td th:text="*{receta.preparacion}"></td>
+						
 						<td>
 							<!-- Botones para ver, editar y eliminar recetas -->
 							<a class="btn btn-secondary" th:attr="data-bs-toggle='modal', data-bs-target='#userModal' + ${receta.id}">Ver</a>

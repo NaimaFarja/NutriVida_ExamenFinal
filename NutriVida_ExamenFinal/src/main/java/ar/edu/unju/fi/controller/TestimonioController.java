@@ -128,7 +128,7 @@ public class TestimonioController {
 	
 	@GetMapping("/editarTestimonio/{id}")
 	public String getEditarUsuario(Testimonio testimonio, Model model){
-		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
+		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
 			model.addAttribute("login", false);
 			return "redirect:/inicio";
 		}else {
