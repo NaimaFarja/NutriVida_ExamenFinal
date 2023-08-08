@@ -3,6 +3,7 @@ package ar.edu.unju.fi.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Receta {
 	@NotEmpty(message="Debe agregar los ingredientes")
 	private List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 	
+	@Column(length=65555)
 	@NotEmpty(message="La receta debe tener una preparacion")
 	private String preparacion;
 	

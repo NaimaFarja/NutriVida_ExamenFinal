@@ -23,6 +23,7 @@ public class ContactoController {
 				return "contacto";
 			}else {
 				model.addAttribute("login", true);
+				model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
 				return "contacto";
 			}
 			
