@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
 	<head>
 		<meta charset="UTF-8">
-		<title>NutriVida</title>
+		<title>NutriVida!</title>
 		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 	</head>
 	<body>
 		<header th:replace="~{/layouts/header :: header}"></header>
 		<div class="container mt-5 py-5 text-center">
-					<h1 class="fw-light">NUTRIVIDA</h1>
+					<h1 class="fw-light">NutriVida!</h1>
 					<p class="lead text-body-secondary">¡Bienvenido a Nutrivida, aqui podras consultar tu peso ideal </p>
 					<p class="fw-lighter"> Tambien podes pedirnos mas informacion mandandonos mensaje a nustro mail  </p>
 					
@@ -24,7 +24,7 @@
 							      <div class=" text-center">
 							       	<h2>Peso Ideal</h2>
 									<p th:text="'Edad '+*{edad}+' años.'" ></p>
-									<p th:text=" 'tu peso ideal es '+*{pesoIdeal}+' kg.'" ></p>
+									<p th:text=" 'Tu peso ideal es '+*{pesoIdeal}+' kg.'" ></p>
 							     </div>
 							      </div>
 							    </div>
