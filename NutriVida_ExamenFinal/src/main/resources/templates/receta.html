@@ -13,25 +13,62 @@
 		
 		<!-- Contenedor principal -->
 		<div class="container mt-4 text-center">
-			<h4>Recetas</h4>
+			<h4 style="font-size: 30px;">¡Bienvenidos a la sección de Recetas de NutriVida!</h4>
+			<br><br>
+			<p>En NutriVida, creemos en tu capacidad para lograr un estilo de vida más saludable sin renunciar al placer de la 
+			comida deliciosa. Nuestra misión es acompañarte en este emocionante viaje hacia un bienestar completo. 
+			Aquí, encontrarás una cuidadosa selección de las mejores recetas, especialmente diseñadas para acomapñarte y 
+			mejorar tu estilo de vida.</p>
 			<hr>
 			<!-- Enlace para crear una nueva receta (visible solo para el administrador) -->
-			<a th:href= "@{/receta_nueva}" th:if="${admin==true}">Nueva Receta</a>
+			<a class="btn btn-inter" th:href= "@{/receta_nueva}" th:if="${admin==true}">Nueva Receta</a>
 			<!-- Filas de tarjetas que muestran las recetas -->
-			<div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
+			<div class="row row-cols-1 row-cols-md-3 g-4 mt-1" style="width: 75rem;">
 				<div class="col"  th:each="receta : ${receta}" >
 				    <div class="card h-100"  style=" border: 1px solid #F7B5CD">
-				    	<!-- Encabezado de la tarjeta que muestra el nombre de la receta -->
-				    	<div class="card-header"  th:text="*{receta.nombre}"></div>
-				    	<!-- Imagen de la receta (si está disponible) -->
-				    	<img th:src="@{/recetas/uploads/}+*{receta.imagen}" class="card-img-top" th:if="*{receta.imagen!=null}">
-				      	<!-- Cuerpo de la tarjeta que muestra la descripción o preparación de la receta -->
-				      	<div class="card-body">
-					        <p class="card-text" th:text="*{receta.preparacion}"></p>
-					      </div>
-				    </div>
-			  	</div>
-			</div>
+					    <!-- Imagen de la receta (si está disponible) -->
+				  		<img th:src="@{/recetas/uploads/}+*{receta.imagen}" class="card-img-top" th:if="*{receta.imagen!=null}" style="width: 200px;">
+						  <div class="card-body">
+						  <!-- Titulo de la tarjeta que muestra el nombre de la receta -->
+						    <h5 class="card-title" th:text="*{receta.nombre}"></h5>
+						    <!-- Cuerpo de la tarjeta que muestra la descripción o preparación de la receta -->
+						    <p > ¿Te gusta lo que ves? Si te gustaría aprender a preparar esta deliciosa receta 
+						    y conocer los ingredientes necesarios, solo tienes que hacer clic en el botón 
+						    <em style="color:#e92e74;">'Ver más'</em>. Te guiaremos con instrucciones claras y sencillas para que puedas disfrutar 
+						    de esta delicia en poco tiempo. ¡Esperamos verte allí!</p>
+						    <a class="btn btn-inter" th:attr="data-bs-toggle='modal', data-bs-target='#userModal' + ${receta.id}">Ver mas</a>
+						  </div>
+					</div>			    	
+				 </div>
+			 </div>
+			 <div class="modal fade" th:each="receta : ${receta}" th:id="'userModal' + ${receta.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			            	<!-- Título del modal -->
+			            	<h1 class="modal-title fs-5">Información Detallada</h1>
+			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			            </div>
+			            <div class="modal-body text-start">
+			                <!-- Información detallada de la receta -->
+			                <p>Nombre: <span th:text="${receta.nombre}"></span></p>
+			                <p class="mb-0">Ingredientes:</p>
+			                <ul>
+			                	<!-- Lista de ingredientes de la receta -->
+			                	<li th:each="ingrediente : ${receta.ingredientes}" th:text="${ingrediente.nombre}"></li>
+			                </ul>
+			                <p class="modal-preparacion">Categoria: <span th:text="${receta.categoria}"></span></p>			                
+			                <p>Preparación: <span th:text="${receta.preparacion}"></span></p>
+			                
+			                
+			                
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-inter" data-bs-dismiss="modal">Cerrar</button>
+			            </div>
+			        </div>
+			    </div>
+		</div>
 		</div>
 		<!-- Pie de página -->	
 		<footer th:replace="~{/layouts/footer :: footer}"></footer>

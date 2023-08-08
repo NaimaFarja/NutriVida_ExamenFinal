@@ -1,13 +1,13 @@
 package ar.edu.unju.fi.controller;
 
 import java.io.IOException;
-//import java.net.MalformedURLException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.core.io.Resource;
-//import org.springframework.http.HttpHeaders;
-//import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,8 +38,8 @@ public class RecetaController {
 	@Autowired
 	private IngredienteService ingredienteService;
 	
-	//*@Autowired
-	//private UploadFile uploadFile;
+	@Autowired
+	private UploadFile uploadFile;
 	
 	
 	
@@ -76,6 +76,7 @@ public class RecetaController {
 			model.addAttribute("login", false);
 			return "redirect:/inicio";
 		}else {
+			model.addAttribute("login", true);
 			model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
 			List<Ingrediente> ingredientes = ingredienteService.obtenerIngredientes();
 			model.addAttribute("ingredientes", ingredientes);
@@ -109,10 +110,10 @@ public class RecetaController {
 		}
 		if(!image.isEmpty()){ //Si se cargo una imagen
 			if(receta.getImagen() != null) { // Y receta tiene una imagen
-				//uploadFile.delete(receta.getImagen()); // Se borra la anterior
+				uploadFile.delete(receta.getImagen()); // Se borra la anterior
 			}
-			//String uniqueFileName = uploadFile.copy(image); 
-			//receta.setImagen(uniqueFileName);
+			String uniqueFileName = uploadFile.copy(image); 
+			receta.setImagen(uniqueFileName);
         }else {
         	if(receta.getId()!=null && recetaService.buscarRecetaById(receta.getId()).getImagen()!=null) {
         		receta.setImagen(recetaService.buscarRecetaById(receta.getId()).getImagen());
@@ -179,6 +180,7 @@ public class RecetaController {
 			return "redirect:/inicio";
 		}else {
 			model.addAttribute("login", true);
+			model.addAttribute("admin", usuarioService.obtenerSesionUsuario().getAdmin().booleanValue());
 			receta = recetaService.buscarRecetaById(receta.getId());
 			List<Ingrediente> ingredientes = ingredienteService.obtenerIngredientes();
 			model.addAttribute("ingredientes", ingredientes);
@@ -195,7 +197,7 @@ public class RecetaController {
 	 * @param filename El nombre de archivo de la imagen.
 	 * @return La imagen en una respuesta HTTP.
 	 */
-	/* @GetMapping("/recetas/uploads/{filename}")
+	 @GetMapping("/recetas/uploads/{filename}")
     public ResponseEntity<Resource> cargarImagen(@PathVariable String filename){
         Resource resource = null;
         try{
@@ -205,6 +207,6 @@ public class RecetaController {
         }return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
-    }*/
+    }
 	//EDITANDO
 }

@@ -42,4 +42,5 @@ public interface IngredienteService {
 	 */
 	
 	public List<Ingrediente> obtenerIngredientes();
+	public boolean verificarIngrediente(String nombre);
 }

@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +21,7 @@ import ar.edu.unju.fi.service.UsuarioService;
  * Controlador que maneja las operaciones relacionadas con los testimonios de usuarios.
  */
 
+@Controller
 public class TestimonioController {
 
 	@Autowired
@@ -82,7 +84,7 @@ public class TestimonioController {
 		testimonio.setFecha(LocalDate.now());
 		testimonio.setUsuario(usuarioService.obtenerSesionUsuario());
 		testimonioService.agregarTestimonio(testimonio);
-		ModelAndView model = new ModelAndView("redirect:/gestion-testimonio");
+		ModelAndView model = new ModelAndView("redirect:/testimonios");
 		return model;
 	}
 	
@@ -114,7 +116,7 @@ public class TestimonioController {
 	@GetMapping("/eliminarTestimonio/{id}")
 	public String getEliminarTestimonio(@PathVariable(value="id")Long id, Model model) {
 		testimonioService.eliminarTestimonio(id);
-		return "redirect:/gestion-testimonio";
+		return "redirect:/testimonios";
 	}
 	
 	/**
@@ -126,7 +128,7 @@ public class TestimonioController {
 	
 	@GetMapping("/editarTestimonio/{id}")
 	public String getEditarUsuario(Testimonio testimonio, Model model){
-		if(this.usuarioService.obtenerSesionUsuario().getAdmin()==false) {
+		if(this.usuarioService.obtenerSesionUsuario().getId()==null) {
 			model.addAttribute("login", false);
 			return "redirect:/inicio";
 		}else {
@@ -137,6 +139,5 @@ public class TestimonioController {
 			return "nuevo_testimonio";
 		}
 		
-	}
-	
+	}	
 }

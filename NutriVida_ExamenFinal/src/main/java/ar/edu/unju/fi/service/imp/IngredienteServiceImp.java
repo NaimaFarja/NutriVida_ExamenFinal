@@ -67,5 +67,16 @@ public class IngredienteServiceImp implements IngredienteService {
 	public List<Ingrediente> obtenerIngredientes(){
 		return (List<Ingrediente>) ingredienteRepository.findAll();
 	}
+	
+	@Override
+	public boolean verificarIngrediente(String nombre) {
+		Optional<Ingrediente> ingrediente = ingredienteRepository.findByNombre(nombre);
+		if(ingrediente.isPresent()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 }
 
