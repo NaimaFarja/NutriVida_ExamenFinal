@@ -9,6 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 /**
@@ -32,6 +35,11 @@ public class IndiceMasaCorporal {
 	private String estado;
 	
 	@NotNull(message = "El campo peso no puede estar vacio.")
+	@Min(value=30, message="debe ingresar un peso valido")
+	@Max(value=600 , message="debe ingresar un peso valido")
+	
+	
+	
 	private Double peso;
     
 	/**
