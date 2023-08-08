@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+    <head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+		<div class="container mt-4">
+		<h4 class="text-center">Testimonio</h4>
+		<hr>
+		<form th:action="@{/nuevo_testimonio}" method="post" th:object="${testimonio}">
+			<input type="hidden" th:field="*{id}">
+			<div class="row g-3">
+				<div class="col-sm-4">
+					<label for="nombre" class="form-label">Deja aqui tu comentario</label> 
+					<input th:field="*{comentario}" type="text" class="form-control" id="nombre"
+						placeholder="Ingrese un comentario...">
+					<div class="text-danger" th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}"></div> 
+				</div>
+			</div>
+			<button type="submit" class="btn btn-rose mt-3" style="width: 100px">Crear</button>
+		</form>
+	</div>
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>

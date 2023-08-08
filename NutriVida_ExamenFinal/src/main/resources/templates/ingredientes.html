@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<!-- Cabecera -->
+		<header th:replace="~{/layouts/header :: header}"></header>
+		
+		<!-- Contenedor principal -->
+		<div class="container text-center mt-4">
+			<div class="alert alert-danger alert-dismissible fade show mt-1 mx-auto" role="alert" style="max-width: 600px;" th:if="${eliminacionError}">
+			  <span th:text="${eliminacionError}"></span>
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<!-- Título de la sección -->
+			<h4>Ingredientes</h4>
+			
+			<hr>
+			<!-- Tabla de ingredientes (si hay ingredientes registrados) -->
+			<div class="table-responsive-sm" th:if="*{ingredientes.size!=0}">
+				<div class="text-start mb-3">
+					<!-- Botón para registrar un nuevo ingrediente -->
+					<a class="btn btn-inter" th:href="@{/registrarIngrediente}">Registrar</a>
+				</div>
+				<table class="table table-bordered table align-middle" style="border-color:#e92e74">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Iteración sobre la lista de ingredientes para mostrar cada uno -->
+						<tr th:each="ingrediente : ${ingredientes}">
+							<th scope="row" th:text="*{ingrediente.id}"></th>
+							<td th:text="*{ingrediente.nombre}"></td>
+							<td>
+								<!-- Botones para editar y eliminar ingredientes -->
+								<a class="btn btn-rose" th:href="@{/editarIngrediente/}+*{ingrediente.id}">Editar</a>
+								<a class="btn btn-inter" th:href="@{/eliminarIngrediente/}+*{ingrediente.id}">Eliminar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<!-- Mensaje si no hay ingredientes registrados -->
+			<div th:if="*{ingredientes.size==0}">
+				<p class="lead">No hay ingredientes registrados en el sistema.</p>
+				<a class="" th:href="@{/registrarIngrediente}">Registrar Ingrediente</a>
+			</div>
+		</div>
+		
+		<!-- Pie de página -->
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+	<!-- EDITANDO -->
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+		
+	<div class="container mt-4 text-center">
+		<h4>Testimonios</h4>
+		<hr>
+		<div class="table-responsive-sm" th:if="*{testimonio.size!=0}">
+			<div class="text-start mb-3">
+				<a class="btn btn-inter" th:href="@{/nuevo_testimonio}">Registrar</a>
+			</div>
+			<table class="table table-bordered table align-middle" style="border-color:#e92e74">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Usuario</th>
+						<th scope="col">Testimonio</th>
+						<th scope="col">Fecha</th>
+						<th scope="col">Opciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="test : ${testimonio}">
+						<th scope="row" th:text="*{test.id}"></th>
+						<td th:text="*{test.usuario.nombre}+' '+*{test.usuario.apellido}"></td>
+						<td th:text="*{test.comentario}"></td>
+						<td th:text="*{test.fecha}"></td>
+						<td>
+							<a class="btn btn-secondary" th:attr="data-bs-toggle='modal', data-bs-target='#userModal' + ${test.id}">Ver</a>
+							<a class="btn btn-rose" th:href="@{/editarTestimonio/}+*{test.id}">Editar</a>
+							<a class="btn btn-inter" th:href="@{/eliminarTestimonio/}+*{test.id}">Eliminar</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- Modal -->
+			<div class="modal fade" th:each="test : ${testimonio}" th:id="'userModal' + ${test.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			            	<h1 class="modal-title fs-5">Información Detallada</h1>
+			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			            </div>
+			            <div class="modal-body text-start">
+			                <p>#ID: <span th:text="${test.id}"></span></p>
+			                <p>Usuario: <span th:text="${test.usuario.nombre}"></span></p>
+			                <p>Testimonio: <span th:text="${test.comentario}"></span></p>
+			                <p>Fecha de Creación: <span th:text="${test.fecha}"></span></p>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-inter" data-bs-dismiss="modal">Cerrar</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+		<div th:if="*{testimonio.size==0}">
+			<p class="lead">No hay testimonios creados en el sistema.</p>
+			<a class="" th:href="@{/nuevo_testimonio}">Crear Testimonio</a>
+		</div>
+	</div>
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>

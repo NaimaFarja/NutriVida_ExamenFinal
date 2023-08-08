@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida!</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+		<div class="container mt-4">
+			<h4 class="text-center">Usuario</h4>
+			<hr>
+			<form th:action="@{/registrarUsuario}" method="POST" th:object="${usuario}">
+				<input type="hidden" th:field="*{id}">
+				<div class="row g-3">
+					<div class="col-sm-4">
+						<label for="nombre" class="form-label">Nombre</label> 
+						<input th:field="*{nombre}" type="text" class="form-control" id="nombre"
+							placeholder="EJ: Sofía">
+						<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+					</div>
+					<div class="col-sm-4">
+						<label for="apellido" class="form-label">Apellido</label> 
+						<input th:field="*{apellido}" 
+							type="text" class="form-control" id="apellido"
+							placeholder="EJ: Carrillo">
+						<div class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+					</div>
+					<div class="col-sm-4">
+						<label for="email" class="form-label">Email</label> 
+						<input th:field="*{email}" 
+							type="email" class="form-control" id="email"
+							placeholder="EJ: liverpool@gmail.com">
+						<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+					</div>
+					<div class="col-sm-4">
+						<label for="tel" class="form-label">Teléfono</label> 
+						<input th:field="*{telefono}" 
+							type="number" class="form-control" id="tel" autocomplete="off"
+							placeholder="EJ: 3885727746">
+						<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+					</div>
+					<div class="col-sm-4">
+						<label for="fecha" class="form-label">Fecha de Nacimiento</label> 
+						<input th:field="*{fechaNac}" 
+							type="date" class="form-control" id="fecha">
+						<div class="text-danger" th:if="${#fields.hasErrors('fechaNac')}" th:errors="*{fechaNac}"></div>
+					</div>
+					<div class="col-sm-4">
+						<label for="estatura" class="form-label">Estatura (cm)</label> 
+						<input th:field="*{estatura}" 
+							type="number" class="form-control" id="estatura"
+							placeholder="EJ: 175">
+						<div class="text-danger" th:if="${#fields.hasErrors('estatura')}" th:errors="*{estatura}"></div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-check form-check-inline">
+							<input th:field="*{sexo}" class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio1" value="Masculino">
+							<label class="form-check-label" for="inlineRadio1">Masculino</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input th:field="*{sexo}" class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio2" value="Femenino">
+							<label class="form-check-label" for="inlineRadio2">Femenino</label>
+						</div>
+						<div class="text-danger" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-rose mt-3" style="width: 100px">Enviar</button>
+				<a class="btn btn-inter mt-3" style="width: 100px" th:href="${login == true ? '/usuarios' : '/inicio'}">Volver</a>
+			</form>
+		</div>
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>

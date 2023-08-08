@@ -1,0 +1,88 @@
+.nav-link:hover,
+.dropdown-item:hover,
+.nav-link-rose
+{
+	color: #F7B5CD;
+	text-decoration: none;
+}
+
+.dropdown-item:active{
+	background-color: #e92e74;
+}
+
+.nav-link-rose:hover{
+	color: #e92e74;
+}
+
+.bg-rose{
+	background-color: #F7B5CD;
+}
+
+.navbar{
+	border-bottom: 1px #F7B5CD solid;
+}
+
+.border-top-rose{
+	border-top: 1px #F7B5CD solid;
+}
+
+.btn-rose{
+	background-color:  #F7B5CD;
+	color:#212529;
+}
+
+.btn-rose:hover{
+	background-color:  #f28ab1;
+	color:#212529;
+}
+
+.btn-inter{
+	background-color: #e92e74;
+	color:#F7B5CD;
+}
+
+.btn-inter:hover{
+	background-color: #c01455;
+	color:#F7B5CD;
+}
+
+.btn-outline-inter{
+	border-color: #e92e74;
+	color:#e92e74;
+}
+
+.btn-outline-inter:hover{
+	background-color: #e92e74;
+	color:#F7B5CD;
+}
+
+.modal-body p{
+	color:#e92e74;
+}
+
+.modal-content {
+    overflow:hidden;   
+}
+
+.modal-body span{
+	color:#fff;
+}
+
+.modal-preparacion {
+	max-height: none;
+	overflow-y: visible;
+}
+.card-img-top{
+	max-width: 100%;
+	display: block;
+	margin: 0 auto; 
+	box-sizing: border-box;
+	border-radius: 500px; 
+	overflow: hidden;
+	object-fit: cover;
+}
+
+.card-title{ 
+	color:white;
+	font-size: 30px;
+}

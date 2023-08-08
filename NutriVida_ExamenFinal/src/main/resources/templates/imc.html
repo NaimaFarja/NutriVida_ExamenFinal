@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+		<div class="container mt-4 text-center">
+			<h4>IMC</h4>
+			<hr>	
+			<div class="row">
+				<div class="col-md-4 mb-3">
+					<form class="m-1 p-4 rounded-4" th:action="@{/imc}" method="post" th:object="${imc}" style="border:1px solid;border-color:#e92e74">
+					 	<div class="mb-3">
+						    <label class="form-label">Peso(KG)</label>
+						    <input type="number" class="form-control m-auto" style="max-width: 200px" placeholder="EJ: 68" th:field="*{peso}">
+						 	<div class="text-danger" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}"></div>
+						 </div>
+						 <button type="submit" class="btn btn-inter">Calcular</button>
+					</form>
+				</div>
+				<div class="col-md-8">
+					<p th:if="*{resultados.size==0}" class="mt-5">No ha realizado ningún calculo todavía.</p>
+					<div class="table-responsive" th:if="*{resultados.size!=0}">
+					  <table class="table">
+					  	<thead>
+							<tr>
+						      	<th scope="col">Fecha</th>
+						      	<th scope="col">Peso</th>
+						      	<th scope="col">Estado</th>
+						    </tr>
+						</thead>
+						<tbody>
+							<tr th:each="imc : ${resultados}">
+						      	<td th:text="*{imc.fecha}">Mark</td>
+						      	<td th:text="*{imc.peso}">Otto</td>
+						      	<td th:text="*{imc.estado}">@mdo</td>
+						    </tr>
+						</tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>

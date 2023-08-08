@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+		<div class="container mt-5 py-5 text-center">
+					<h1 class="fw-light">NUTRIVIDA</h1>
+					<p class="lead text-body-secondary">¡Bienvenido a Nutrivida, aqui podras consultar tu peso ideal </p>
+					<p class="fw-lighter"> Tambien podes pedirnos mas informacion mandandonos mensaje a nustro mail  </p>
+					
+				</div>
+		<div class="container">
+			<div class="row">
+			
+				<div class="row row-cols-1 row-cols-md-2 g-4">
+							  <div class="col">
+							    <div class="card">
+							      <div class="card-body">
+							      <div class=" text-center">
+							       	<h2>Peso Ideal</h2>
+									<p th:text="'Edad '+*{edad}+' años.'" ></p>
+									<p th:text=" 'tu peso ideal es '+*{pesoIdeal}+' kg.'" ></p>
+							     </div>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <div class="card-body">
+							      	<div class=" text-center">
+							        <h2 class="card-title">Contactanos</h2>
+							        <p class="card-text">Para saber mas de nuestros planes...</p>
+							        <a class="btn btn-rose" href="mailto:nutrivida@gmail.com?subject=Hola, me interesaria conocer mas de sus planes" >Gmail</a>
+							      	</div>
+							      </div>	
+							    </div>
+							  </div>
+				</div>
+			</div>
+		</div>
+
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>

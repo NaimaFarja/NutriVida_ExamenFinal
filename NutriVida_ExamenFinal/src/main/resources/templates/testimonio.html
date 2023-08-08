@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+	<head>
+		<meta charset="UTF-8">
+		<title>NutriVida</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="~{/layouts/header :: header}"></header>
+		<div class="container mt-4 text-center">
+			<h4>Testimonios</h4>
+			<hr>
+				<a th:href="@{nuevo_testimonio}" th:if="${login==true}">Dejar testimonio</a>
+				<div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
+					<div class="col" th:each="test : ${testimonio}">
+					    <div class="card h-100"  style=" border: 1px solid #F7B5CD">
+					     <img class="img-fluid rouded" th:src="@{/images/usuario1.png}" style="width: 65px;height:65px; align-items: center;">
+					    	<div class="card-header" th:text="*{test.usuario.nombre}"></div>
+					      	<div class="card-body">
+						        <p class="card-text" th:text="*{test.comentario}"></p>
+						        <div th:if="${idUsuario == test.usuario.id}">
+						     	   	<a class="btn btn-rose" th:href="@{/editarTestimonio/}+*{test.id}">Editar</a>
+									<a class="btn btn-inter" th:href="@{/eliminarTestimonio/}+*{test.id}">Eliminar</a>
+						        </div>
+						      </div>
+					    </div>
+				  	</div>
+				</div>
+		</div>
+		<footer th:replace="~{/layouts/footer :: footer}"></footer>
+	</body>
+</html>
