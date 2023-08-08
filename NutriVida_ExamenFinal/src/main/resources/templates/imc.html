@@ -2,12 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
 	<head>
 		<meta charset="UTF-8">
-		<title>NutriVida</title>
+		<title>NutriVida!</title>
 		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 	</head>
 	<body>
 		<header th:replace="~{/layouts/header :: header}"></header>
+		<div class="container mt-5 py-5 text-center">
+			<h1 class="fw-light">NutriVida!</h1>
+			<p class="lead text-body-secondary">¡Bienvenido a NutriVida, aqui podras saber tu Indice de Masa Corporal</p>
+			<p class="fw-lighter">Si el resultado de IMC es menor 18,5 => "Está por debajo de su peso ideal" </p> 
+			<p>Si el resultado de IMC está entre [18,5 y 25] => "Está en su peso normal"</p>
+			<p> Si el resultado de IMC es > 25 => "Tiene sobrepeso"</p>
+		</div>
+		
 		<div class="container mt-4 text-center">
 			<h4>IMC</h4>
 			<hr>	
