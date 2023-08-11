@@ -28,7 +28,7 @@
 				<div class="col-sm-4">
 					<label for="nombre" class="form-label">Nombre</label> 
 					<input th:field="*{nombre}" type="text" class="form-control" id="nombre"
-						placeholder="EJ: Maximiliano">
+						placeholder="EJ: Pastel de papas">
 					<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 				</div>
 				<div class="col-sm-4">
@@ -61,6 +61,7 @@
 				<!-- Campo para seleccionar ingredientes (checkboxes) -->
 				<div class="col-sm-6">
 					<label for="preparacion" class="form-label">Ingredientes</label><br>
+					<a class="btn btn-inter" th:href="@{/registrarIngrediente}">Registrar</a>
 				    <div class="form-check form-check-inline" th:each="ingrediente : ${ingredientes}">
 						<input class="form-check-input" type="checkbox" th:field="*{ingredientes}" th:value="${ingrediente.id}" multiple>
 					  	<label class="form-check-label" th:text="${ingrediente.nombre}"></label>
